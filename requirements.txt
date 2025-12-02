@@ -1,0 +1,10 @@
+# Core dependencies for Advent of Code solutions
+requests>=2.31.0
+numpy>=1.24.0
+
+# Development and code quality tools
+flake8>=6.0.0
+pytest>=7.0.0
+
+# Optional utilities that might be useful for puzzles
+beautifulsoup4>=4.12.0
