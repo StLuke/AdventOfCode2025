@@ -29,8 +29,6 @@ def part1(data):
     total_sum = 0
 
     for start, end in data:
-        start_orig, end_orig = start, end
-
         start_digits = len(str(start))
         end_digits = len(str(end))
 
