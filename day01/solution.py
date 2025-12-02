@@ -17,20 +17,60 @@ def read_input(filename="input.txt"):
 def parse_data(data):
     """Parse the input data into a usable format."""
     lines = data.split('\n')
-    # TODO: Implement parsing logic based on the actual problem
-    return lines
+    return [line.strip() for line in lines if line.strip()]
+
+
+def process_line(line, current_number):
+    """Process a single R/L operation and return new number."""
+    if not line:
+        return current_number
+
+    direction, number = line[0], int(line[1:])
+    return current_number + number if direction == 'R' else current_number - number
 
 
 def part1(data):
     """Solve part 1 of the puzzle."""
-    # TODO: Implement part 1 solution
-    return 0
+    number = 50
+    count = 0
+
+    for line in data:
+        number = process_line(line, number)
+        if number % 100 == 0:
+            count += 1
+
+    return count
 
 
 def part2(data):
     """Solve part 2 of the puzzle."""
-    # TODO: Implement part 2 solution
-    return 0
+    number = 50
+    count = 0
+    prev_hundreds = 0  # 50 // 100
+
+    for line in data:
+        prev_number = number
+        number = process_line(line, number)
+
+        hundreds = number // 100
+        if hundreds != prev_hundreds:
+            # Calculate boundary crossings with adjustments
+            crossings = abs(hundreds - prev_hundreds)
+
+            # Apply L-direction adjustments
+            if line[0] == 'L':
+                if number % 100 == 0:
+                    crossings += 1
+                if prev_number % 100 == 0:
+                    crossings -= 1
+
+            count += crossings
+        elif number % 100 == 0 and line[0] == 'L':
+            count += 1
+
+        prev_hundreds = hundreds
+
+    return count
 
 
 def main():
@@ -38,25 +78,10 @@ def main():
     print("Advent of Code 2025 - Day 01")
     print("=" * 30)
 
-    # Test with example data
     try:
-        example_data = read_input("example.txt")
-        parsed_example = parse_data(example_data)
+        data = read_input("input.txt")
+        parsed_data = parse_data(data)
 
-        print("Example Results:")
-        print(f"Part 1: {part1(parsed_example)}")
-        print(f"Part 2: {part2(parsed_example)}")
-        print()
-    except FileNotFoundError:
-        print("No example.txt found, skipping example test")
-        print()
-
-    # Solve with actual input
-    try:
-        actual_data = read_input("input.txt")
-        parsed_data = parse_data(actual_data)
-
-        print("Actual Results:")
         print(f"Part 1: {part1(parsed_data)}")
         print(f"Part 2: {part2(parsed_data)}")
     except FileNotFoundError:

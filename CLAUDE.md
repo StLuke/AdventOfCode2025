@@ -37,6 +37,20 @@ When assisting with Advent of Code challenges, Claude should follow these specif
 - Code performance optimization after the solution is working
 - Following Python best practices and PEP 8 guidelines
 
+### Solution Execution Policy
+
+**NO AUTOMATIC SOLUTION EXECUTION**: Claude must NOT run or execute puzzle solutions for debugging or testing purposes. This includes:
+- Running `python solution.py` to test implementations
+- Executing scripts to verify outputs
+- Running solutions with example data to demonstrate functionality
+- Testing solutions against input files
+
+**USER HANDLES TESTING**: The user will manually execute and test all solutions. Claude should:
+- Provide the code implementation only
+- Explain how to run the solution if asked
+- Help debug issues based on error messages provided by the user
+- Suggest testing approaches without executing them
+
 ### Example Interaction
 
 **Good Response:**
