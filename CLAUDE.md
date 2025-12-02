@@ -51,6 +51,25 @@ When assisting with Advent of Code challenges, Claude should follow these specif
 - Help debug issues based on error messages provided by the user
 - Suggest testing approaches without executing them
 
+### File Management Policy
+
+**INPUT FILE EXCLUSION**: Claude must never include actual puzzle input files in the repository:
+- `input.txt` files contain user-specific puzzle data from Advent of Code
+- These files should always be excluded from git commits
+- The .gitignore file already excludes **/input.txt patterns
+- Claude should remind users to add their input.txt locally when needed
+
+**EXAMPLE FILE INCLUSION**: Claude must always include example files in the repository:
+- `example.txt` files contain the sample data provided in problem descriptions
+- These files help with development and testing
+- Example files should be committed and shared as they're part of the problem specification
+- Always create example.txt with the sample data from the puzzle description
+
+**FILE STRUCTURE**: Each day's directory should contain:
+- `solution.py` - The main solution code (committed)
+- `example.txt` - Sample input from problem description (committed)
+- `input.txt` - User's actual puzzle input (NOT committed, excluded by .gitignore)
+
 ### Example Interaction
 
 **Good Response:**
